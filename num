@@ -1,0 +1,55 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+
+int main(){
+
+
+ double price, quantity, itemTotal, gst, grandTotal, itemTotal1;
+ int num;
+ double sum;
+ 
+ num = 1;
+
+ ifstream in;
+
+ in.open("data.in");
+
+
+ cout<< setw(16) << "Item Number" << setw(16) << "Unit Price" << setw(16) << "Quantity" << setw(16) << "Item Total" << endl;
+
+ in >> price >> quantity;
+ 
+ while (!in.eof()){
+
+    itemTotal = quantity * price;
+    
+    cout << setw(7)  << num++
+        << setw(20) << fixed << showpoint << right << setprecision(2) << price
+        << setw(20) << fixed << showpoint << right << setprecision(2) << quantity
+        << setw(20) << fixed << showpoint << right << setprecision(2) << itemTotal
+	 << endl;
+
+       
+    in >> price >> quantity;
+
+    sum = sum + itemTotal;
+    
+    gst = sum * 0.05;
+ }
+
+ grandTotal = sum + gst;
+ 
+ cout << setw(42) << "GST" << setw(25) <<  gst << endl;
+ cout << setw(50) << "Grand Total" << setw(17) <<  grandTotal << endl;
+ 
+ in.close();
+
+
+ return 0;
+
+}
